@@ -1,6 +1,7 @@
-class Pirate {
-    constructor(name, possition, fightStile, devilFruit, dream) {
+export class Pirate {
+    constructor(name, picture, possition, fightStile, devilFruit, dream) {
         this.name = name;
+        this.picture = picture;
         this.possition = possition;
         this.fightStile = fightStile;
         this.devilFruit = devilFruit;
@@ -23,40 +24,54 @@ class Pirate {
     }
 }
 
-export class Navigator extends pirate {
-    constructor(name, fightStile, devilFruit, dream) {
-        super(name, "Navigator", fightStile, devilFruit, dream);
-    }
-}
-export class Captain extends pirate {
+
+export class Captain extends Pirate {
     constructor(name, fightStile, devilFruit, dream) {
         super(name, "Captain", fightStile, devilFruit, dream);
     }
 }
-export class ViceCaptain extends pirate {
+export class ViceCaptain extends Pirate {
     constructor(name, fightStile, devilFruit, dream) {
         super(name, "ViceCaptain", fightStile, devilFruit, dream);
     }
 }
-export class Cook extends pirate {
-    constructor(name, fightStile, devilFruit, dream) {
-        super(name, "Cook", fightStile, devilFruit, dream);
+export class Navigator extends Pirate {
+    constructor(name, picture, fightStile, devilFruit, dream) {
+        super(name, picture, "Navigator", fightStile, devilFruit, dream);
     }
 }
-export class Sniper extends pirate {
-    constructor(name, fightStile, devilFruit, dream) {
-        super(name, "Sniper", fightStile, devilFruit, dream);
+export class Cook extends Pirate {
+    constructor(name, picture, fightStile, devilFruit, dream) {
+        super(name, picture, "Cook", fightStile, devilFruit, dream);
     }
 }
-export class Doctor extends pirate {
+export class Sniper extends Pirate {
+    constructor(name, picture, fightStile, devilFruit, dream) {
+        super(name, picture, "Sniper", fightStile, devilFruit, dream);
+    }
+}
+export class Doctor extends Pirate {
     constructor(name, fightStile, devilFruit, dream) {
         super(name, "Doctor", fightStile, devilFruit, dream);
     }
 }
-export class Crew {
-    constructor(name, flag, members) {
-        this.name = name;
-        this.flag = flag;
-        this.members = members;
+export class Archelogist extends Pirate {
+    constructor(name, picture, fightStile, devilFruit, dream) {
+        super(name, picture, "Archelogist", fightStile, devilFruit, dream);
+    }
+}
+export class ShipMechanic extends Pirate {
+    constructor(name, picture, fightStile, devilFruit, dream) {
+        super(name, picture, "ShipMechanic", fightStile, devilFruit, dream);
+    }
+}
+export class Musician extends Pirate {
+    constructor(name, picture, fightStile, devilFruit, dream) {
+        super(name, picture, "Musician", fightStile, devilFruit, dream);
+    }
+}
+export class Pilot extends Pirate {
+    constructor(name, picture, fightStile, devilFruit, dream) {
+        super(name, picture, "Pilot", fightStile, devilFruit, dream);
     }
 }

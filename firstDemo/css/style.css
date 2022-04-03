@@ -65,3 +65,159 @@
 .possition {
     display: block;
 }
+
+.container {
+    display: flex;
+    /* or inline-flex */
+}
+
+.item {
+    order: 5;
+    /* default is 0 */
+}
+
+.border {
+    border: #070707;
+}
+
+
+/* story */
+
+.accordion {
+    max-width: 990px;
+    background: rgba(0, 0, 0, 0.10);
+    height: 400px;
+    margin: 20px auto;
+    display: flex;
+    box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.47);
+    flex-direction: row;
+    cursor: pointer;
+    margin-bottom: 100px;
+}
+
+.box {
+    position: relative;
+    height: 100%;
+    flex: 1;
+    background-position: center;
+    background-size: cover;
+    transition: .7s;
+    box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.47);
+}
+
+.box:hover {
+    flex: 7;
+    height: 500px;
+    width: 500px;
+}
+
+.a1 {
+    background-image: url("../js/files/arks/ark1EastBLue.jpg");
+}
+
+.a2 {
+    background-image: url("../js/files/arks/Alabasta_Arc2.webp")
+}
+
+.a3 {
+    background-image: url("../js/files/arks/Skypiea_Arc3.jpg");
+    color: #fff;
+}
+
+.a4 {
+    background-image: url("../js/files/arks/EniesLobbyArk4.jpg");
+    color: #fff;
+}
+
+.a5 {
+    background-image: url("../js/files/arks/Sabaody_Archipelago_Arc.webp");
+}
+
+.a6 {
+    background-image: url("../js/files/arks/Amazon_Lily_Arc.webp");
+}
+
+.a7 {
+    background-image: url("../js/files/arks/impeldown.jpg");
+}
+
+.a8 {
+    background-image: url("../js/files/arks/marineford.webp");
+}
+
+.a9 {
+    background-image: url("../js/files/arks/Fish-Man_Island_Arc.webp");
+}
+
+.a10 {
+    background-image: url("../js/files/arks/Punk_Hazard_Arc.webp");
+}
+
+.a11 {
+    background-image: url("../js/files/arks/dresrossaArk.jpg");
+}
+
+.a12 {
+    background-image: url("../js/files/arks/Zou_Arc.webp");
+}
+
+.a13 {
+    background-image: url("../js/files/arks/Whole_Cake_Island_Arc.webp");
+}
+
+.a14 {
+    background-image: url("../js/files/arks/Wano_Country_Arc.webp");
+}
+
+.a15 {
+    background-image: url("../js/files/arks/ThrilerrBark.jpg");
+}
+
+.text {
+    color: white;
+    background: rgb(0, 0, 0);
+    /* fallback color */
+    background: rgba(0, 0, 0, 0.7);
+    position: absolute;
+    bottom: 0;
+    opacity: 0;
+    padding: 10px;
+}
+
+.box:hover .text {
+    opacity: 0.8;
+    font-weight: bold;
+}
+
+h1 {
+    width: 250px;
+    text-align: center;
+    margin: 100px auto 20px auto;
+}
+
+@media screen and (max-width: 800px) {
+    body {
+        margin: 0;
+    }
+    .accordion {
+        flex-direction: column;
+        height: 700px;
+        box-shadow: none;
+    }
+    .box {
+        box-shadow: none;
+    }
+    .box:hover {
+        flex: 7;
+    }
+}
+
+.center {
+    text-align: center;
+}
+
+.cover {
+    object-fit: cover;
+    width: 660px;
+    height: 500px;
+}
