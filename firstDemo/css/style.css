@@ -86,8 +86,8 @@
 .accordion {
     max-width: 990px;
     background: rgba(0, 0, 0, 0.10);
-    height: 400px;
-    margin: 20px auto;
+    height: 300px;
+    margin: 10px auto;
     display: flex;
     box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.47);
     flex-direction: row;
@@ -125,68 +125,6 @@
     flex: 7;
     height: 500px;
     width: 500px;
-}
-
-.a1 {
-    background-image: url("../js/files/arks/ark1EastBLue.jpg");
-}
-
-.a2 {
-    background-image: url("../js/files/arks/Alabasta_Arc2.webp")
-}
-
-.a3 {
-    background-image: url("../js/files/arks/Skypiea_Arc3.jpg");
-    color: #fff;
-}
-
-.a4 {
-    background-image: url("../js/files/arks/EniesLobbyArk4.jpg");
-    color: #fff;
-}
-
-.a5 {
-    background-image: url("../js/files/arks/Sabaody_Archipelago_Arc.webp");
-}
-
-.a6 {
-    background-image: url("../js/files/arks/Amazon_Lily_Arc.webp");
-}
-
-.a7 {
-    background-image: url("../js/files/arks/impeldown.jpg");
-}
-
-.a8 {
-    background-image: url("../js/files/arks/marineford.webp");
-}
-
-.a9 {
-    background-image: url("../js/files/arks/Fish-Man_Island_Arc.webp");
-}
-
-.a10 {
-    background-image: url("../js/files/arks/Punk_Hazard_Arc.webp");
-}
-
-.a11 {
-    background-image: url("../js/files/arks/dresrossaArk.jpg");
-}
-
-.a12 {
-    background-image: url("../js/files/arks/Zou_Arc.webp");
-}
-
-.a13 {
-    background-image: url("../js/files/arks/Whole_Cake_Island_Arc.webp");
-}
-
-.a14 {
-    background-image: url("../js/files/arks/Wano_Country_Arc.webp");
-}
-
-.a15 {
-    background-image: url("../js/files/arks/ThrilerrBark.jpg");
 }
 
 .text {
@@ -236,4 +174,15 @@ h1 {
     object-fit: cover;
     width: 660px;
     height: 500px;
+}
+
+.crew-show {
+    display: flex;
+    display: block;
+}
+
+.crew-show img {
+    max-width: 150px;
+    padding: 5px;
+    max-height: 100px;
 }

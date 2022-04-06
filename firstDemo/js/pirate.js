@@ -7,6 +7,13 @@ export class Pirate {
         this.devilFruit = devilFruit;
         this.dream = dream;
     }
+
+    get getName() { return this.name };
+    get getPicture() { return this.picture };
+    get getPossition() { return this.possition };
+    get getFightStile() { return this.fightStile };
+    get getDevilFruit() { return this.devilFruit };
+    get getDream() { return this.dream };
     introduce() {
         return (
             "My name is " +
@@ -22,17 +29,18 @@ export class Pirate {
             " devil fruit."
         );
     }
+
 }
 
 
 export class Captain extends Pirate {
-    constructor(name, fightStile, devilFruit, dream) {
-        super(name, "Captain", fightStile, devilFruit, dream);
+    constructor(name, picture, fightStile, devilFruit, dream) {
+        super(name, picture, "Captain", fightStile, devilFruit, dream);
     }
 }
 export class ViceCaptain extends Pirate {
-    constructor(name, fightStile, devilFruit, dream) {
-        super(name, "ViceCaptain", fightStile, devilFruit, dream);
+    constructor(name, picture, fightStile, devilFruit, dream) {
+        super(name, picture, "ViceCaptain", fightStile, devilFruit, dream);
     }
 }
 export class Navigator extends Pirate {
@@ -51,8 +59,8 @@ export class Sniper extends Pirate {
     }
 }
 export class Doctor extends Pirate {
-    constructor(name, fightStile, devilFruit, dream) {
-        super(name, "Doctor", fightStile, devilFruit, dream);
+    constructor(name, picture, fightStile, devilFruit, dream) {
+        super(name, picture, "Doctor", fightStile, devilFruit, dream);
     }
 }
 export class Archelogist extends Pirate {
