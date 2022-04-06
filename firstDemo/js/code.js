@@ -46,25 +46,24 @@ function factoryCrew(crewName, crewFlag, crewShip,
 function createDomElemntForACrew(crew) {
     var element = document.getElementsByClassName("crew-show")[0]
 
-    element.innerHTML = `<div class="center"><H2>` + crew.getName + `</H2></div>`
-    element.innerHTML += `<div class="crew-show center">
-        
-    <img src="../js/files/straw-hats/flag.png" alt=""> 
-    <img src="../js/files/straw-hats/Thousand_Sunny_Infobox.webp" alt=""> 
+    element.innerHTML += `<div class="center"><H2>` + crew.getName + `</H2></div>`
+    element.innerHTML += ` 
+    
+            <img src="../js/files/straw-hats/flag.png" alt=""> 
+            <img src="../js/files/straw-hats/Thousand_Sunny_Infobox.webp" alt=""> 
 
-</div>`
-
-    element.innerHTML += `\n<div class="accordion"></div>`
+         `
 
 
-    var all = document.querySelector("body > div.crew-show > div.accordion")
+
+
+    var all = document.querySelector("body > div.accordion")
+    console.log(all)
     all.innerHTML += createMember(crew.getCaptain)
 
     crew.getMembers.forEach(element => {
         all.innerHTML += createMember(element)
     });
-
-    console.log(element.innerHTML)
 
 
 
@@ -73,7 +72,7 @@ function createDomElemntForACrew(crew) {
 <div class = "text">
             <h2 class = "center" >` + member.getName + `</h2>
 
-        <p>Is the introductory saga of the series.Monkey D.Luffy meets Shanks as a young boy living in East Blue.This is where he recruits most of his crew and, ultimately, where the adventure begins. </p>
+        <p>` + member.introduce() + `</p>
 
         </div> </div>`
     }

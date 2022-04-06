@@ -16,9 +16,7 @@ export class Pirate {
     get getDream() { return this.dream };
     introduce() {
         return (
-            "My name is " +
-            this.name +
-            ". I am " +
+            "I am " +
             this.possition +
             " and I have a dream: " +
             this.dream +

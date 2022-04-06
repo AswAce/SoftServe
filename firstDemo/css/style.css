@@ -66,6 +66,10 @@
     display: block;
 }
 
+.end {
+    float: right
+}
+
 .container {
     display: flex;
     /* or inline-flex */
