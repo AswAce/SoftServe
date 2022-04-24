@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/style-login.css">
+    <script src="../js/account.js" type="module"></script>
+
+
+
+</head>
+
+
+<body>
+    <header>
+        <div class="topnav">
+            <div class="possition">
+                <a href="/index.html">Home</a>
+                <a href="/html/crew.html">Crew</a>
+                <a href="/html/story.html">Story</a>
+                <a href="/html/world.html">World</a>
+                <a class="active" href="/html/login.html">Enter</a>
+
+                <a href="/html/about.html">About </a>
+            </div>
+        </div>
+    </header>
+
+    <form action="login" method="post" class="loginform">
+        <div class=whitetop>
+            <h3> Login information</h3>
+        </div>
+        <div class="login">Login</div>
+        <div class="register">Register</div>
+        <input class="mail" type="email" name="email" placeholder="e-mail adress" required>
+        <br>
+        <input class="pass" type="password" name="password" placeholder="password" required>
+        <br>
+        <input class="submit" type="submit" value="Login">
+
+    </form>
+
+    <form action="register" method="post" class="registerform">
+        <div class=whitetop>
+            <h3> Register information</h3>
+        </div>
+        <div class="login">Login</div>
+        <div class="register">Register</div>
+        <input class="mail" type="email" name="email" placeholder="e-mail adress" required>
+        <br>
+        <input class="pass" type="password" name="password" placeholder="password" required>
+        <input class="pass" type="password" name="password" placeholder="repeat password" required>
+        <br>
+
+        <input class="submit" type="button" value="Register">
+
+        </input>
+
+
+    </form>
+
+
+</body>
+
+</html>

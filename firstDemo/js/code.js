@@ -34,6 +34,17 @@ var strawHatCrew = factoryCrew(crewName, crewFlag,
 
 createDomElemntForACrew(strawHatCrew)
 
+$(document).ready(function() {
+    // $(".effect").click(function() {
+    //     $(".information").hide();
+    //     console.log("Works")
+    // });
+    $(".effect").click(function() {
+
+        $(this).next().toggle();
+        console.log("Works sas")
+    });
+});
 
 
 
@@ -71,8 +82,8 @@ function createDomElemntForACrew(crew) {
         return `<div class="box"> <img src =` + member.getPicture + ` alt = "" >
 <div class = "text">
             <h2 class = "center" >` + member.getName + `</h2>
-
-        <p>` + member.introduce() + `</p>
+            <button class="effect">More</button>
+        <p class="information">` + member.introduce() + `</p>
 
         </div> </div>`
     }
