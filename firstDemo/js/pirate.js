@@ -8,6 +8,7 @@ export class Pirate {
         this.dream = dream;
     }
 
+
     get getName() { return this.name };
     get getPicture() { return this.picture };
     get getPossition() { return this.possition };
@@ -27,9 +28,14 @@ export class Pirate {
             " devil fruit."
         );
     }
-
+    assighFromJson(pirate) {
+        this.name = pirate.name;
+        this.picture = pirate.picture;
+        this.fightStile = pirate.fightStile;
+        this.devilFruit = pirate.devilFruit;
+        this.dream = pirate.dream;
+    }
 }
-
 
 export class Captain extends Pirate {
     constructor(name, picture, fightStile, devilFruit, dream) {

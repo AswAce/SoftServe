@@ -8,37 +8,23 @@ import {
     Musician,
     ShipMechanic,
     Archelogist,
-    Pilot
-} from "./pirate.js"
-import { Crew } from "./crew.js"
-import { Ark } from "./ark.js"
+    Pilot,
+} from "./pirate.js";
+import { Crew } from "./crew.js";
+import { getAllObjectsController } from "../js/controller.js";
 
-var captain = new Captain("Luffy", "../js/files/straw-hats/luffy.jpg", "punch and kicks", "Ruber man", "Become pirate king")
-var navigator = new Navigator("Nami", "../js/files/straw-hats/nami.jpg", "Weather control", "No", "Draw a map of the world")
-var vicecaptain = new ViceCaptain("Zoro", "../js/files/straw-hats/zoro.png", "Three sword style", "No", "Greatest swordsman")
-var cook = new Cook("Sanji", "../js/files/straw-hats/sanji.jpg", "Kicks", "No", "Find all blue")
-var sniper = new Sniper("Usopp", "../js/files/straw-hats/usopp.webp", "Sniper slingshot", "No", "Become Bravest hero")
-var doctor = new Doctor("Chopper", "../js/files/straw-hats/chopper.jpg", "Transformations", "Three ponts transpormation", "Find cure for all illnesses")
-var archelogist = new Archelogist("Robin", "../js/files/straw-hats/robin.webp", "multiply hands and feets", "sprout duplicates of any body parts", "Find the void history")
-var shipMechanic = new ShipMechanic("Franky", "../js/files/straw-hats/frnaky.webp", "Cyborg wepons", "no", "Build greatest ship")
-var pilot = new Pilot("Jinbei", "../js/files/straw-hats/Jinbe.webp", "Fishman karate", "no", "To help Luffy")
-var musician = new Musician("Brook", "../js/files/straw-hats/brook.webp", "music and sword", "Imortality", "Meet with Laboon")
 var crewName = "StrawHats";
 var crewFlag = "../js/files/straw-hats/flag.png";
 var crewShip = "../js/files/straw-hats/Thousand_Sunny_Infobox.webp";
+let crewMembers = await createPirates(await getAllObjectsController());
 
+
+var captain = new Captain("Luffy", "../js/files/straw-hats/luffy.jpg", "punch and kicks", "Ruber man", "Become pirate king")
 var strawHatCrew = factoryCrew(crewName, crewFlag,
-    crewShip, captain, vicecaptain, navigator,
-    sniper, cook,
-    doctor, archelogist, pilot, shipMechanic, musician)
-
+    crewShip, captain, crewMembers.crew)
 createDomElemntForACrew(strawHatCrew)
 
 $(document).ready(function() {
-    // $(".effect").click(function() {
-    //     $(".information").hide();
-    //     console.log("Works")
-    // });
     $(".effect").click(function() {
 
         $(this).next().toggle();
@@ -46,45 +32,138 @@ $(document).ready(function() {
     });
 });
 
-
-
-function factoryCrew(crewName, crewFlag, crewShip,
-    captain, ...crew) {
-    return new Crew(crewName, crewFlag, crewShip, captain, ...crew);
+function factoryCrew(crewName, crewFlag, crewShip, captain, crew) {
+    return new Crew(crewName, crewFlag, crewShip, captain, crew);
 }
 
-
 function createDomElemntForACrew(crew) {
-    var element = document.getElementsByClassName("crew-show")[0]
+    console.log(crew.getCaptain)
+    console.log(crew.getMembers)
 
-    element.innerHTML += `<div class="center"><H2>` + crew.getName + `</H2></div>`
+    let element = document.querySelector("body > div.crew-show.center");
+    console.log(element)
+    element.innerHTML +=
+        `<div class="center"><H2>` + crew.getName + `</H2></div>`;
     element.innerHTML += ` 
-    
             <img src="../js/files/straw-hats/flag.png" alt=""> 
             <img src="../js/files/straw-hats/Thousand_Sunny_Infobox.webp" alt=""> 
+         `;
+    let all = document.querySelector("body > div.accordion");
+    all.innerHTML += createMember(crew.getCaptain);
 
-         `
-
-
-
-
-    var all = document.querySelector("body > div.accordion")
-    console.log(all)
-    all.innerHTML += createMember(crew.getCaptain)
-
-    crew.getMembers.forEach(element => {
-        all.innerHTML += createMember(element)
+    crew.getMembers.forEach((element) => {
+        all.innerHTML += createMember(element);
     });
 
-
-
     function createMember(member) {
-        return `<div class="box"> <img src =` + member.getPicture + ` alt = "" >
+        console.log(member)
+        console.log("member")
+        return (
+            `<div class="box"> <img src =` +
+            member.getPicture +
+            ` alt = "" >
 <div class = "text">
-            <h2 class = "center" >` + member.getName + `</h2>
+<div class="center"> <h2 class = "center" >` +
+            member.getName +
+            `</h2></div>
+
             <button class="effect">More</button>
-        <p class="information">` + member.introduce() + `</p>
+        <p class="information hide">` +
+            member.introduce() +
+            `</p>
 
         </div> </div>`
+        );
+    }
+}
+
+async function createPirates(pirates) {
+    let createdPirates = new Array;
+
+    pirates.forEach((element) => {
+        createdPirates.push(pirateFactory(element))
+
+    });
+    let a = await Promise.all(createdPirates).then((values) => {
+
+        let captain = getCaptain(values)
+
+        removePirate(values)
+        let crew = {
+            captain: captain,
+            crew: values
+
+        }
+
+        return crew;
+    })
+
+
+    return a;
+}
+
+async function pirateFactory(pirate) {
+    switch (pirate.possition) {
+        case "captain":
+            let captain = new Captain();
+            captain.assighFromJson(pirate);
+            return captain;
+        case "sniper":
+            let sniper = new Sniper();
+            sniper.assighFromJson(pirate);
+            return sniper;
+        case "archelogis":
+            let archelogis = new Archelogist();
+            archelogis.assighFromJson(pirate);
+            return archelogis;
+        case "pilot":
+            let pilot = new Pilot();
+            pilot.assighFromJson(pirate);
+            return pilot;
+        case "musician":
+            let musician = new Musician();
+            musician.assighFromJson(pirate);
+            return musician;
+        case "shipMechanic":
+            let shipMechanic = new ShipMechanic();
+            shipMechanic.assighFromJson(pirate);
+            return shipMechanic;
+        case "cook":
+            let cook = new Cook();
+            cook.assighFromJson(pirate);
+            return cook;
+        case "vice-captain":
+            let viceCaptain = new ViceCaptain();
+            viceCaptain.assighFromJson(pirate);
+            return viceCaptain;
+        case "doctor":
+            let doctor = new Doctor();
+            doctor.assighFromJson(pirate);
+            return doctor;
+        case "navigator":
+            let navigator = new Navigator();
+            navigator.assighFromJson(pirate);
+            return navigator;
+    }
+
+}
+
+async function getCaptain(createdPirates) {
+    let captain;
+    createdPirates.forEach(element => {
+
+        if (element.possition === 'Captain') {
+            captain = element;
+        }
+    });
+    return captain;
+}
+async function removePirate(createdPirates) {
+    for (var i = 0; i < createdPirates.length; i++) {
+
+        if (createdPirates[i].possition === "Captain") {
+
+            createdPirates.splice(i, 1);
+        }
     }
 }

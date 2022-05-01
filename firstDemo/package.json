@@ -10,6 +10,8 @@
     "author": "",
     "license": "ISC",
     "dependencies": {
-        "ez-plus": "^1.2.1"
+        "cross-fetch": "^3.1.5",
+        "ez-plus": "^1.2.1",
+        "node-fetch": "^3.2.4"
     }
 }
