@@ -1,12 +1,113 @@
- export async function getAllObjectsFromDb() {
-     let address = `https://eu-api.backendless.com/B8CDF59D-A57F-C09D-FF37-16F12B14F200/5087962C-FC76-4524-AA4C-30FC38AF8823/data/crew_members`;
+import { getAllObjectsFromDb } from '../js/repository.js'
+import {
+    Navigator,
+    Doctor,
+    Captain,
+    ViceCaptain,
+    Cook,
+    Sniper,
+    Musician,
+    ShipMechanic,
+    Archelogist,
+    Pilot,
+} from "./pirate.js";
 
-     let all = await fetch((address), {
-         method: "GET",
-         headers: {
-             "Content-Type": "application/json",
-         },
-     }).then((e) => e.json());
-     //връща арей от обектите.
-     return Object.keys(all).map(key => ({ key, ...all[key] }));
- }
+export async function getAllObjectsController() {
+
+    let objects = await getAllObjectsFromDb();
+
+
+
+    return await (objects)
+}
+
+export async function createPirates(pirates) {
+    let createdPirates = new Array;
+
+    pirates.forEach((element) => {
+        createdPirates.push(pirateFactory(element))
+
+    });
+    let a = await Promise.all(createdPirates).then((values) => {
+
+        let captain = getCaptain(values)
+
+        removePirate(values)
+        let crew = {
+            captain: captain,
+            crew: values
+
+        }
+
+        return crew;
+    })
+
+
+    return a;
+}
+
+async function pirateFactory(pirate) {
+    switch (pirate.possition) {
+        case "captain":
+            let captain = new Captain();
+            captain.assighFromJson(pirate);
+            return captain;
+        case "sniper":
+            let sniper = new Sniper();
+            sniper.assighFromJson(pirate);
+            return sniper;
+        case "archelogis":
+            let archelogis = new Archelogist();
+            archelogis.assighFromJson(pirate);
+            return archelogis;
+        case "pilot":
+            let pilot = new Pilot();
+            pilot.assighFromJson(pirate);
+            return pilot;
+        case "musician":
+            let musician = new Musician();
+            musician.assighFromJson(pirate);
+            return musician;
+        case "shipMechanic":
+            let shipMechanic = new ShipMechanic();
+            shipMechanic.assighFromJson(pirate);
+            return shipMechanic;
+        case "cook":
+            let cook = new Cook();
+            cook.assighFromJson(pirate);
+            return cook;
+        case "vice-captain":
+            let viceCaptain = new ViceCaptain();
+            viceCaptain.assighFromJson(pirate);
+            return viceCaptain;
+        case "doctor":
+            let doctor = new Doctor();
+            doctor.assighFromJson(pirate);
+            return doctor;
+        case "navigator":
+            let navigator = new Navigator();
+            navigator.assighFromJson(pirate);
+            return navigator;
+    }
+
+}
+
+async function getCaptain(createdPirates) {
+    let captain;
+    createdPirates.forEach(element => {
+
+        if (element.possition === 'Captain') {
+            captain = element;
+        }
+    });
+    return captain;
+}
+async function removePirate(createdPirates) {
+    for (var i = 0; i < createdPirates.length; i++) {
+
+        if (createdPirates[i].possition === "Captain") {
+
+            createdPirates.splice(i, 1);
+        }
+    }
+}
