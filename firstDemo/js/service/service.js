@@ -1,4 +1,4 @@
-import { getAllObjectsFromDb } from '../js/repository.js'
+import { getAllObjectsFromDb } from '../repository/repository.js'
 import {
     Navigator,
     Doctor,
@@ -10,18 +10,34 @@ import {
     ShipMechanic,
     Archelogist,
     Pilot,
-} from "./pirate.js";
+} from "../enteties/pirate.js";
+import { Crew } from "../enteties/crew.js";
+var crewName = "StrawHats";
+var crewFlag = "../js/files/straw-hats/flag.png";
+var crewShip = "../js/files/straw-hats/Thousand_Sunny_Infobox.webp";
+var captain = new Captain("Luffy", "../js/files/straw-hats/luffy.jpg", "punch and kicks", "Ruber man", "Become pirate king")
 
-export async function getAllObjectsController() {
+let crewMembers = await createPirates(await getAllObjectsService());
+var strawHatCrew = factoryCrew(crewName, crewFlag,
+    crewShip, captain, crewMembers.crew)
+
+export function returnStrawHatCrew() {
+
+    return strawHatCrew;
+}
+
+function factoryCrew(crewName, crewFlag, crewShip, captain, crew) {
+    return new Crew(crewName, crewFlag, crewShip, captain, crew);
+}
+
+async function getAllObjectsService() {
 
     let objects = await getAllObjectsFromDb();
-
-
-
     return await (objects)
 }
 
-export async function createPirates(pirates) {
+
+async function createPirates(pirates) {
     let createdPirates = new Array;
 
     pirates.forEach((element) => {
@@ -45,6 +61,7 @@ export async function createPirates(pirates) {
 
     return a;
 }
+
 
 async function pirateFactory(pirate) {
     switch (pirate.possition) {
@@ -92,6 +109,7 @@ async function pirateFactory(pirate) {
 
 }
 
+
 async function getCaptain(createdPirates) {
     let captain;
     createdPirates.forEach(element => {
@@ -102,6 +120,7 @@ async function getCaptain(createdPirates) {
     });
     return captain;
 }
+
 async function removePirate(createdPirates) {
     for (var i = 0; i < createdPirates.length; i++) {
 

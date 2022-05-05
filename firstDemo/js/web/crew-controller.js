@@ -1,15 +1,6 @@
-import { Crew } from "./crew.js";
-import { Captain } from "./pirate.js";
-import { getAllObjectsController, createPirates } from "../js/service.js"
-var crewName = "StrawHats";
-var crewFlag = "../js/files/straw-hats/flag.png";
-var crewShip = "../js/files/straw-hats/Thousand_Sunny_Infobox.webp";
-let crewMembers = await createPirates(await getAllObjectsController());
+import { returnStrawHatCrew } from "../service/service.js"
 
-var captain = new Captain("Luffy", "../js/files/straw-hats/luffy.jpg", "punch and kicks", "Ruber man", "Become pirate king")
-var strawHatCrew = factoryCrew(crewName, crewFlag,
-    crewShip, captain, crewMembers.crew)
-createDomElemntForACrew(strawHatCrew)
+createDomElemntForACrew(returnStrawHatCrew())
 
 $(document).ready(function() {
     $(".effect").click(function() {
@@ -19,9 +10,7 @@ $(document).ready(function() {
     });
 });
 
-function factoryCrew(crewName, crewFlag, crewShip, captain, crew) {
-    return new Crew(crewName, crewFlag, crewShip, captain, crew);
-}
+
 
 function createDomElemntForACrew(crew) {
     console.log(crew.getCaptain)
